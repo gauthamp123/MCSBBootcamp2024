@@ -6,13 +6,14 @@ K = 0.6
 max_r = 3
 
 initial = 0.5
+target_cycles = 100
 max_days = 1000 # change based on conditions
 
 rArray = np.linspace(0.1,2.99,1000)
 
 
 bounded = True
-x_final = np.zeros((1000,300))
+x_final = np.zeros((1000,target_cycles))  
 for inc in range(0, len(rArray)):
     r = rArray[inc]
     x = np.zeros(max_days)
@@ -23,7 +24,7 @@ for inc in range(0, len(rArray)):
             x[i] = x[i-1] + r*(1-(x[i-1]/K))*x[i-1]
 
 
-    x_final[inc,:] = x[-300:]
+    x_final[inc,:] = x[-target_cycles:]
 
 
 
